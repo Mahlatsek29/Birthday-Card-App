@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const CARD_WIDTH = 300; // Fixed width for the card
+const CARD_WIDTH = 300; 
 
 const RainbowText = ({ children }) => {
   const rainbowColors = [
@@ -60,17 +60,17 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   image: {
-    height: CARD_WIDTH, // Keeping a fixed height for the image
-    marginBottom: 10, // Using fixed margin
+    height: CARD_WIDTH,
+    marginBottom: 10, 
   },
   textContainer: {
     backgroundColor: "black",
-    paddingHorizontal: 30, // Using fixed padding
-    paddingTop: 6, // Using fixed padding
-    paddingBottom: 15, // Using fixed padding
+    paddingHorizontal: 30,
+    paddingTop: 6, 
+    paddingBottom: 15, 
   },
   message: {
-    fontSize: 12, // Using a fixed font size
+    fontSize: 12, 
     textAlign: "center",
     color: "white",
   },
