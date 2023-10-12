@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="">
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="CardScreen" component={CardScreen} />
       </Stack.Navigator>

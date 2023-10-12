@@ -1,26 +1,49 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Easing } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function SplashScreen({ navigation }) {
-  const [heartColor, setHeartColor] = useState("orange");
+  const [heartColor, setHeartColor] = useState("limegreen"); // Updated heartColor value
+  const heartScale = new Animated.Value(1);
 
   const handleHeartPress = () => {
-    // Change the heart icon color to neon green when pressed
-    setHeartColor("neonGreen");
+    setHeartColor("orange");
     navigation.navigate("CardScreen");
   };
 
+  const startPulsatingAnimation = () => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(heartScale, {
+          toValue: 1.2,
+          duration: 500,
+          easing: Easing.inOut(Easing.ease),
+          useNativeDriver: false,
+        }),
+        Animated.timing(heartScale, {
+          toValue: 1,
+          duration: 500,
+          easing: Easing.inOut(Easing.ease),
+          useNativeDriver: false,
+        }),
+      ]),
+      { iterations: -1 }
+    ).start();
+  };
+
+  useEffect(() => {
+    startPulsatingAnimation();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require("./assets/rainbow.gif")}
-        style={styles.background}
-      />
+      <Image source={require("./assets/rainbow.gif")} style={styles.background} />
       <View style={styles.centeredContent}>
         <Text style={styles.title}>Touch My Heart</Text>
         <TouchableOpacity style={styles.heartButton} onPress={handleHeartPress}>
-          <Icon name="heart" size={40} color={heartColor} />
+          <Animated.View style={{ transform: [{ scale: heartScale }] }}>
+            <Icon name="heart" size={40} color={heartColor} />
+          </Animated.View>
         </TouchableOpacity>
       </View>
     </View>
@@ -45,6 +68,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
+    color: "limegreen", 
     fontSize: 24,
     marginBottom: 20,
   },

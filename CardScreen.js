@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const CARD_WIDTH = 300;
+const CARD_WIDTH = 450;
 
 const RainbowText = ({ children }) => {
   const rainbowColors = [
